@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0.38
+    container_name: msa-board-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: msaboard
+      MYSQL_USER: msaboard
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - /Users/jungwoonson/Study/docker/msa-board/mysql:/var/lib/mysql
