@@ -3,9 +3,12 @@ package jungwoonson.board.article.controller;
 import jungwoonson.board.article.service.ArticleService;
 import jungwoonson.board.article.service.request.ArticleCreateRequest;
 import jungwoonson.board.article.service.request.ArticleUpdateRequest;
+import jungwoonson.board.article.service.response.ArticlePageResponse;
 import jungwoonson.board.article.service.response.ArticleResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,6 +18,15 @@ public class ArticleController {
     @GetMapping("/v1/articles/{articleId}")
     public ArticleResponse read(@PathVariable Long articleId) {
         return articleService.read(articleId);
+    }
+
+    @GetMapping("/v1/articles")
+    public ArticlePageResponse readAll(
+            @RequestParam("boardId") Long boardId,
+            @RequestParam("page") Long page,
+            @RequestParam("pageSize") Long pageSize
+    ) {
+        return articleService.readAll(boardId, page, pageSize);
     }
 
     @PostMapping("/v1/articles")
