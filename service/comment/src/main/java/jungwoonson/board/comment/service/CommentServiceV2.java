@@ -18,13 +18,15 @@ import static java.util.function.Predicate.not;
 @Service
 @RequiredArgsConstructor
 public class CommentServiceV2 {
+
     private final Snowflake snowflake = new Snowflake();
     private final CommentRepositoryV2 commentRepository;
 
     @Transactional
     public CommentResponse create(CommentCreateRequestV2 request) {
         CommentV2 parent = findParent(request);
-        CommentPath parentCommentPath = parent == null ? CommentPath.create("") : parent.getCommentPath();
+        CommentPath parentCommentPath =
+                parent == null ? CommentPath.create("") : parent.getCommentPath();
         CommentV2 comment = commentRepository.save(
                 CommentV2.create(
                         snowflake.nextId(),
@@ -32,7 +34,8 @@ public class CommentServiceV2 {
                         request.getArticleId(),
                         request.getWriterId(),
                         parentCommentPath.createChildCommentPath(
-                                commentRepository.findDescendantsTopPath(request.getArticleId(), parentCommentPath.getPath())
+                                commentRepository.findDescendantsTopPath(request.getArticleId(),
+                                                parentCommentPath.getPath())
                                         .orElse(null)
                         )
                 )
@@ -62,11 +65,11 @@ public class CommentServiceV2 {
         commentRepository.findById(commentId)
                 .filter(not(CommentV2::getDeleted))
                 .ifPresent(comment -> {
-                    if(hasChildren(comment)) {
+                    if (hasChildren(comment)) {
                         comment.delete();
-                    } else {
-                        delete(comment);
+                        return;
                     }
+                    delete(comment);
                 });
     }
 
@@ -92,11 +95,13 @@ public class CommentServiceV2 {
                 commentRepository.findAll(articleId, (page - 1) * pageSize, pageSize).stream()
                         .map(CommentResponse::from)
                         .toList(),
-                commentRepository.count(articleId, PageLimitCalculator.calculatePageLimit(page, pageSize, 10L))
+                commentRepository.count(articleId,
+                        PageLimitCalculator.calculatePageLimit(page, pageSize, 10L))
         );
     }
 
-    public List<CommentResponse> readAllInfiniteScroll(Long articleId, String lastPath, Long pageSize) {
+    public List<CommentResponse> readAllInfiniteScroll(Long articleId, String lastPath,
+            Long pageSize) {
         List<CommentV2> comments = lastPath == null ?
                 commentRepository.findAllInfiniteScroll(articleId, pageSize) :
                 commentRepository.findAllInfiniteScroll(articleId, lastPath, pageSize);
