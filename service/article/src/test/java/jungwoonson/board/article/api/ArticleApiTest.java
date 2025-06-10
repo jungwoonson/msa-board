@@ -1,6 +1,6 @@
 package jungwoonson.board.article.api;
 
-import jungwoonson.board.article.entity.Article;
+import java.util.List;
 import jungwoonson.board.article.service.response.ArticlePageResponse;
 import jungwoonson.board.article.service.response.ArticleResponse;
 import lombok.AllArgsConstructor;
@@ -8,8 +8,6 @@ import lombok.Getter;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.RestClient;
-
-import java.util.List;
 
 public class ArticleApiTest {
     RestClient restClient = RestClient.create("http://localhost:9000");

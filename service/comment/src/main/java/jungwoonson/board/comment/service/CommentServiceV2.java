@@ -1,5 +1,8 @@
 package jungwoonson.board.comment.service;
 
+import static java.util.function.Predicate.not;
+
+import java.util.List;
 import jungwoonson.board.comment.entity.ArticleCommentCount;
 import jungwoonson.board.comment.entity.CommentPath;
 import jungwoonson.board.comment.entity.CommentV2;
@@ -12,10 +15,6 @@ import jungwoonson.board.common.snowflake.Snowflake;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-
-import static java.util.function.Predicate.not;
 
 @Service
 @RequiredArgsConstructor
