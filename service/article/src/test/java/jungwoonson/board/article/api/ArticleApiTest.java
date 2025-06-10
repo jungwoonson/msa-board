@@ -108,7 +108,7 @@ public class ArticleApiTest {
                 new ArticleCreateRequest("hi", "my content", 1L, 2L));
 
         Long count = restClient.get()
-                .uri("/v1/articles/{boardId}/count", articleResponse.getBoardId())
+                .uri("/v1/articles/boards/{boardId}/count", articleResponse.getBoardId())
                 .retrieve()
                 .body(Long.class);
 
@@ -119,7 +119,7 @@ public class ArticleApiTest {
                 .retrieve();
 
         count = restClient.get()
-                .uri("/v1/articles/{boardId}/count", articleResponse.getBoardId())
+                .uri("/v1/articles/boards/{boardId}/count", articleResponse.getBoardId())
                 .retrieve()
                 .body(Long.class);
 

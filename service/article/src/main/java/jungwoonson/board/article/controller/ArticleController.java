@@ -53,7 +53,7 @@ public class ArticleController {
         articleService.delete(articleId);
     }
 
-    @GetMapping("/v1/articles/{boardId}/count")
+    @GetMapping("/v1/articles/boards/{boardId}/count")
     public Long count(@PathVariable Long boardId) {
         return articleService.count(boardId);
     }
