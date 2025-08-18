@@ -46,7 +46,7 @@ public class CommentApiV2Test {
     @Test
     void read() {
         CommentResponse response = restClient.get()
-                .uri("/v2/comments/{commentId}", 185666150904332288L)
+                .uri("/v2/comments/{commentId}", 197270164969738240L)
                 .retrieve()
                 .body(CommentResponse.class);
         System.out.println("response = " + response);
