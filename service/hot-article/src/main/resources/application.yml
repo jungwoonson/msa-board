@@ -10,9 +10,12 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
-      group-id: mss-board-hot-article-service
+      group-id: msa-board-hot-article-service
+      # Consumer는 Kafka의 바이트 데이터를 애플리케이션에서 사용할 수 있도록 key, value를 byte[] -> String 타입으로 변환
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # 기본값은 true인데, 이 경우 주기적으로(기본 5초마다) Kafka가 자동으로 offset을 commit합니다.
+      # false = 수동 commit 방식 사용, 데이터 유실 방지나 재처리 제어가 가능
       enable-auto-commit: false
 endpoints:
   msa-board-article-service:

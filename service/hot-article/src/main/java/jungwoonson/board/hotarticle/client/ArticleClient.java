@@ -29,14 +29,14 @@ public class ArticleClient {
         try {
             return restClient
                     .get()
-                    .uri("/v1/articles/{articleId}", articleId).retrieve()
+                    .uri("/v1/articles/{articleId}", articleId)
+                    .retrieve()
                     .body(ArticleResponse.class);
         } catch (Exception e) {
             log.error("[ArticleClient.read] articleId={}", articleId, e);
         }
         return null;
     }
-
 
     @Getter
     public static class ArticleResponse {
