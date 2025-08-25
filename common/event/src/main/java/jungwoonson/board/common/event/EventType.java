@@ -11,8 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 public enum EventType {
 
     ARTICLE_CREATED(ArticleCreatedEventPayload.class, Topic.MSA_BOARD_ARTICLE),
-    ARTICLE_UPDATE(ArticleUpdatedEventPayload.class, Topic.MSA_BOARD_ARTICLE),
-    ARTICLE_DELETE(ArticleDeletedEventPayload.class, Topic.MSA_BOARD_ARTICLE),
+    ARTICLE_UPDATED(ArticleUpdatedEventPayload.class, Topic.MSA_BOARD_ARTICLE),
+    ARTICLE_DELETED(ArticleDeletedEventPayload.class, Topic.MSA_BOARD_ARTICLE),
     COMMENT_CREATED(CommentCreatedEventPayload.class, Topic.MSA_BOARD_COMMENT),
     COMMENT_DELETED(CommentDeletedEventPayload.class, Topic.MSA_BOARD_COMMENT),
     ARTICLE_LIKED(ArticleLikedEventPayload.class, Topic.MSA_BOARD_LIKE),
