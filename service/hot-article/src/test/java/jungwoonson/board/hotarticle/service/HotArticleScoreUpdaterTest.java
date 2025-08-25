@@ -27,8 +27,6 @@ class HotArticleScoreUpdaterTest {
     @Mock
     HotArticleListRepository hotArticleListRepository;
     @Mock
-    HotArticleScoreCalculator hotArticleScoreCalculator;
-    @Mock
     ArticleCreatedTimeRepository articleCreatedTimeRepository;
 
     @Test
